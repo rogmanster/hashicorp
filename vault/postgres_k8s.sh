@@ -10,6 +10,7 @@
 ###############################
 
 ## Create service account yaml
+clear
 echo
 echo "KUBERNETES CONFIGURATIONS"
 echo
@@ -128,8 +129,10 @@ vault secrets enable database
 vault write database/config/demo \
 plugin_name=postgresql-database-plugin \
 allowed_roles=readonly \
-    connection_url="user=roger password=password123 \
-    host=$POSTGRES_IP port=5432 dbname=demo sslmode=disable"
+    connection_url=" user={{username}} password={{password}} \
+    host=$POSTGRES_IP port=5432 dbname=demo sslmode=disable" \
+    username="roger" \
+    password="password123"
 
 echo
 vault read database/config/demo
@@ -167,7 +170,7 @@ echo
 
 kubectl run client --rm -i --tty --serviceaccount=postgres-vault --env=VAULT_ADDR=$VAULT_ADDR --image alpine
 
-# Copy & Paste into exec session
+## Copy & Paste into exec session
 apk update
 apk add curl postgresql-client jq
 KUBE_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
