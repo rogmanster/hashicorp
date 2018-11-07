@@ -144,7 +144,7 @@ echo
 
 vault write database/roles/readonly db_name=demo \
 creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
-default_ttl=1h max_ttl=24h
+default_ttl=1h max_ttl=90
 
 echo
 vault read database/roles/readonly
@@ -168,17 +168,17 @@ echo
 echo "Authenticating with K8s pod with Vault..."
 echo
 
-kubectl run client --rm -i --tty --serviceaccount=postgres-vault --env=VAULT_ADDR=$VAULT_ADDR --image alpine
+## The below will deploy the vaul-sidecar which will authenticate to K8s
+## and inject the token into the container and store it on a volume reachable
+## by the container /home/vault/.vault-home
+##
+## https://github.com/sethvargo/vault-kubernetes-authenticator
 
-## Copy & Paste into exec session
-apk update
-apk add curl postgresql-client jq
-KUBE_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-VAULT_K8S_LOGIN=$(curl --request POST --data '{"jwt": "'"$KUBE_TOKEN"'", "role": "postgres"}' $VAULT_ADDR/v1/auth/kubernetes/login)
-X_VAULT_TOKEN=$(echo $VAULT_K8S_LOGIN | jq -r '.auth.client_token')
-POSTGRES_CREDS=$(curl --header "X-Vault-Token: $X_VAULT_TOKEN" $VAULT_ADDR/v1/database/creds/readonly)
+envsubst < ~/projects/vault/k8s/vault_k8s_init.yaml | kubectl apply -f -
+sleep 5
+kubectl exec -it vault-sidecar /bin/sh
 
-echo $KUBE_TOKEN
-echo $VAULT_K8S_LOGIN | jq
-echo $X_VAULT_TOKEN
-echo $POSTGRES_CREDS | jq
+## Curl command to run inside the container to fetch postgres cred
+
+curl --header "X-Vault-Token: $(cat ~/.vault-token)" $VAULT_ADDR/v1/database/creds/readonly
+
