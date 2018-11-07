@@ -1,0 +1,44 @@
+## https://github.com/sethvargo/vault-kubernetes-authenticator
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vault-sidecar
+spec:
+  serviceAccountName: postgres-vault
+  volumes:
+  - name: vault-token
+    emptyDir:
+      medium: Memory
+
+  initContainers:
+  # The vault-authenticator container authenticates the container using the
+  # kubernetes auth method and puts the resulting token on the filesystem.
+  - name: vault-authenticator
+    image: sethvargo/vault-kubernetes-authenticator:0.1.0
+    volumeMounts:
+    - name: vault-token
+      mountPath: /home/vault
+    env:
+    - name: VAULT_ADDR
+      value: ${VAULT_ADDR}
+    - name: TOKEN_DEST_PATH
+      value: /home/vault/.vault-token
+    - name: VAULT_ROLE
+      value: postgres
+
+  containers:
+    # Your other containers would read from /home/vault/.vault-token, or set
+    # HOME to /home/vault
+  - name: consul-template
+    image: hashicorp/consul-template:alpine
+      # VAULT_TOKEN=${cat /home/vault/.vault-token}
+    volumeMounts:
+    - name: vault-token
+      mountPath: /home/vault
+    env:
+    - name: HOME
+      value: /home/vault
+    - name: VAULT_ADDR
+      value: ${VAULT_ADDR}
