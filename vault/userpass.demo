@@ -1,0 +1,39 @@
+## Prerequisites
+# Deploy Vault Instance and export VAULT_ADDR
+# Create KV2 secret for 'mydata'
+# Create userpass for authentication
+
+## Vault userpass configuration for 'roger'
+vault write auth/userpass/users/roger password=password123 policies=my-policy
+
+## Vault policy 'my-policy'
+# capabilities = ["create", "read", "update", "delete", "list"]
+path "secret/metadata/" {
+    capabilities = ["list"]
+}
+
+path "secret/data/mydata" {
+    capabilities = ["read"]
+}
+
+## Output of Vault Token using Userpass Auth..."
+curl \
+    --request POST \
+    --data '{"password": "password123"}' \
+$VAULT_ADDR/v1/auth/userpass/login/roger | jq
+
+## Set Vault Token to Variable
+TOKEN=$(curl \
+    --request POST \
+    --data '{"password": "password123"}' \
+$VAULT_ADDR/v1/auth/userpass/login/roger | jq -r '.auth.client_token')
+
+## Fetch Static Secret
+curl \
+    --header "X-Vault-Token: $TOKEN" \
+    $VAULT_ADDR/v1/secret/data/mydata | jq
+
+## Optional Vault CLI Commands
+vault login -method=userpass username=roger
+vault kv list secret/
+vault kv get secret/mydata
