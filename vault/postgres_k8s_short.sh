@@ -3,7 +3,6 @@
 # Deploy HashiStack Dev Cluster for Vault - rogmanster
 # Export gcloud for kubectl commands
 # Export VAULT_ADDR for Vault commands
-# Need
 
 ###############################
 ## KUBERNETES CONFIGURATIONS ##
