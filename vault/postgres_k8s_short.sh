@@ -109,7 +109,7 @@ clear
 ## https://github.com/sethvargo/vault-kubernetes-authenticator
 
 envsubst < ~/projects/vault/k8s/vault_k8s_init.yaml | kubectl apply -f -
-sleep 5
+sleep 10
 kubectl exec -it vault-sidecar /bin/sh
 
 ## Curl command to run inside the container to fetch postgres cred
