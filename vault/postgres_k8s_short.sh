@@ -78,6 +78,7 @@ clear
 
 ## Set Postgres LoabBalancer IP
 POSTGRES_IP=$(kubectl get svc | grep LoadBalancer | awk '{print $4}')
+echo $POSTGRES_IP
 
 ## Write and read postgres secret backend configuration
 vault secrets enable database
