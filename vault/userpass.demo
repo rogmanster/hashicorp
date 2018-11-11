@@ -1,6 +1,6 @@
 ## Prerequisites
 # Deploy Vault Instance and export VAULT_ADDR
-# Create KV2 secret for 'mydata'
+# Create KV2 secret for 'mycred'
 # Create userpass for authentication
 
 ## Set Vault Premium License
@@ -15,7 +15,7 @@ path "secret/metadata/" {
     capabilities = ["list"]
 }
 
-path "secret/data/mydata" {
+path "secret/data/mycred" {
     capabilities = ["read"]
 }
 
