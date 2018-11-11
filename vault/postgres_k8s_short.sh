@@ -33,6 +33,7 @@ read -p "press enter to continue..."
 clear
 
 ## Set Vault Premium License
+vault login root
 vault write sys/license text=$VAULT_PREMIUM_LICENSE
 
 ## Get variable inputs for Vault from K8s (SA Name, JWT, Certificate and K8s API endpoint)
