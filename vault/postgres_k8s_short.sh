@@ -78,7 +78,6 @@ clear
 
 ## Set Postgres LoabBalancer IP
 POSTGRES_IP=$(kubectl get svc | grep LoadBalancer | awk '{print $4}')
-echo $POSTGRES_IP
 
 ## Write and read postgres secret backend configuration
 vault secrets enable database
@@ -95,6 +94,7 @@ vault write database/roles/readonly db_name=demo \
 creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
 default_ttl=1h max_ttl=30
 
+echo "Postgres LoadBalancer IP: " $POSTGRES_IP
 echo
 read -p "press enter to continue..."
 
