@@ -39,4 +39,4 @@ curl \
 ## Optional Vault CLI Commands
 vault login -method=userpass username=roger
 vault kv list secret/
-vault kv get secret/mydata
+vault kv get secret/mycred
