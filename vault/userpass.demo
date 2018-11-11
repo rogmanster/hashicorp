@@ -3,6 +3,9 @@
 # Create KV2 secret for 'mydata'
 # Create userpass for authentication
 
+## Set Vault Premium License
+vault write sys/license text=$VAULT_PREMIUM_LICENSE
+
 ## Vault userpass configuration for 'roger'
 vault write auth/userpass/users/roger password=password123 policies=my-policy
 
