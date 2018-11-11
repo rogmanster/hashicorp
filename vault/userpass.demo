@@ -34,7 +34,7 @@ $VAULT_ADDR/v1/auth/userpass/login/roger | jq -r '.auth.client_token')
 ## Fetch Static Secret
 curl \
     --header "X-Vault-Token: $TOKEN" \
-    $VAULT_ADDR/v1/secret/data/mydata | jq
+    $VAULT_ADDR/v1/secret/data/mycred | jq
 
 ## Optional Vault CLI Commands
 vault login -method=userpass username=roger
