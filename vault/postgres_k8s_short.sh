@@ -1,8 +1,8 @@
 ## Prerequisites ##
-# Deploy K8s Cluster from TFE - myorganization
-# Deploy HashiStack Dev Cluster for Vault - rogmanster
-# Export gcloud for kubectl commands
-# Export VAULT_ADDR for Vault commands
+# Deploy K8s Cluster - GKE
+# Deploy HashiStack Vault Cluster - AWS
+# Configure kubectl commandline access - 'gcloud'
+# Configure vault commandline access - 'Export VAULT_ADDR' 
 
 ###############################
 ## KUBERNETES CONFIGURATIONS ##
@@ -117,13 +117,4 @@ kubectl exec -it vault-sidecar /bin/sh
 ## Curl command to run inside the container to fetch postgres cred
 curl --header "X-Vault-Token: $(cat ~/.vault-token)" $VAULT_ADDR/v1/database/creds/readonly
 
-## Manually Authenticating POD
-# KUBE_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-# VAULT_K8S_LOGIN=$(curl --request POST --data '{"jwt": "'"$KUBE_TOKEN"'", "role": "postgres"}' $VAULT_ADDR/v1/auth/kubernetes/login)
-# X_VAULT_TOKEN=$(echo $VAULT_K8S_LOGIN | jq -r '.auth.client_token')
-# POSTGRES_CREDS=$(curl --header "X-Vault-Token: $X_VAULT_TOKEN" $VAULT_ADDR/v1/database/creds/readonly)
 
-# echo $KUBE_TOKEN
-# echo $VAULT_K8S_LOGIN | jq
-# echo $X_VAULT_TOKEN
-# echo $POSTGRES_CREDS | jq
