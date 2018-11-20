@@ -115,6 +115,6 @@ sleep 10
 kubectl exec -it vault-sidecar /bin/sh
 
 ## Curl command to run inside the container to fetch postgres cred
-curl --header "X-Vault-Token: $(cat ~/.vault-token)" $VAULT_ADDR/v1/database/creds/readonly
+# curl --header "X-Vault-Token: $(cat ~/.vault-token)" $VAULT_ADDR/v1/database/creds/readonly
 
 
