@@ -2,7 +2,7 @@
 # Deploy K8s Cluster - GKE
 # Deploy HashiStack Vault Cluster - AWS
 # Configure kubectl commandline access - 'gcloud'
-# Configure vault commandline access - 'Export VAULT_ADDR' 
+# Configure vault commandline access - 'export VAULT_ADDR' 
 
 ###############################
 ## KUBERNETES CONFIGURATIONS ##
