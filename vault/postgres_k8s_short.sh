@@ -21,7 +21,7 @@ clear
 clear
 
 ## Deploy postgres db container on kubernetes
-kubectl apply -f k8s/postgres_kong.yaml
+kubectl apply -f k8s/postgres.yaml
 sleep 3
 echo
 read -p "press enter to continue..."
