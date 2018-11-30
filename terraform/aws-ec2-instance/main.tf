@@ -12,7 +12,7 @@ resource "aws_key_pair" "awskey" {
 }
 
 resource "aws_security_group" "allow_all" {
-  name        = "allow_all-${random_id.name.hex}"
+  name        = "allow-all-${random_id.name.hex}"
   description = "Allow all inbound traffic"
 
   ingress {
