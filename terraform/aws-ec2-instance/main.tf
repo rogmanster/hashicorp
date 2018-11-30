@@ -1,30 +1,47 @@
 terraform {
-  required_version = ">= 0.11.1"
+  required_version = ">= 0.11.0"
 }
 
-provider "google" {
-  credentials = "${var.gcp_credentials}"
-  project     = "${var.gcp_project}"
-  region      = "${var.gcp_region}"
+resource "aws_key_pair" "awskey" {
+  key_name   = "awskey"
+  public_key = "${tls_private_key.awskey.public_key_openssh}"
 }
 
-resource "google_compute_instance" "demo" {
-  name         = "${var.instance_name}"
-  machine_type = "${var.machine_type}"
-  zone         = "${var.gcp_zone}"
+resource "aws_security_group" "allow_all" {
+  name        = "allow_all"
+  description = "Allow all inbound traffic"
 
-  boot_disk {
-    initialize_params {
-      image = "${var.image}"
-    }
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-  network_interface {
-    network = "default"
-
-    access_config {
-      // Ephemeral IP
-    }
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
   }
+}
 
+provider "aws" {
+  region = "${var.aws_region}"
+  profile = "${var.aws_profile}"
+}
+
+resource "aws_instance" "ubuntu" {
+  ami               = "${var.ami_id}"
+  instance_type     = "${var.instance_type}"
+  availability_zone = "${var.aws_region}a"
+  key_name = "${aws_key_pair.awskey.key_name}"
+  security_groups = ["${aws_security_group.allow_all.name}"]
+
+  tags {
+    Name        = "${var.name}"
+    TTL         = "${var.ttl}"
+    Owner       = "${var.owner}"
+    Description = "This is an super demo experience"
+  }
 }
