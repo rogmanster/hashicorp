@@ -36,6 +36,11 @@ curl \
     --header "X-Vault-Token: $TOKEN" \
     $VAULT_ADDR/v1/secret/data/mycred | jq
 
+## Fetch AWS Dynamic Secret
+curl \
+    --header "X-Vault-Token: ..." \
+    $VAULT_ADDR/v1/aws/creds/my-role
+
 ## Optional Vault CLI Commands
 vault login -method=userpass username=roger
 vault kv list secret/
