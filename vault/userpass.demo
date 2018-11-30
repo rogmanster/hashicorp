@@ -39,7 +39,7 @@ curl \
 ## Fetch AWS Dynamic Secretv (optional: if configured)
 curl \
     --header "X-Vault-Token: $TOKEN" \
-    $VAULT_ADDR/v1/aws/creds/my-role
+    $VAULT_ADDR/v1/aws/creds/my-role | jq
 
 ## Optional Vault CLI Commands
 vault login -method=userpass username=roger
