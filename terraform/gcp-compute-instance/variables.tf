@@ -8,12 +8,12 @@ variable "gcp_project" {
 
 variable "gcp_region" {
   description = "GCP region, e.g. us-east1"
-  default = "us-east1"
+  default = "us-west1"
 }
 
 variable "gcp_zone" {
   description = "GCP zone, e.g. us-east1-a"
-  default = "us-east1-b"
+  default = "us-west1-b"
 }
 
 variable "machine_type" {
@@ -23,7 +23,7 @@ variable "machine_type" {
 
 variable "instance_name" {
   description = "GCP instance name"
-  default = "demo"
+  default = "rogmanster"
 }
 
 variable "image" {
