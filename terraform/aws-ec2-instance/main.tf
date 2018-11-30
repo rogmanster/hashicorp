@@ -2,13 +2,17 @@ terraform {
   required_version = ">= 0.11.0"
 }
 
+resource "random_id" "name" {
+  byte_length = 4
+}
+
 resource "aws_key_pair" "awskey" {
-  key_name   = "awskey"
+  key_name   = "awskwy-${random_id.name.hex}"
   public_key = "${tls_private_key.awskey.public_key_openssh}"
 }
 
 resource "aws_security_group" "allow_all" {
-  name        = "allow_all"
+  name        = "allow_all-${random_id.name.hex}"
   description = "Allow all inbound traffic"
 
   ingress {
