@@ -26,8 +26,8 @@ clear
 ############################################
 ## PERSONA - ADMIN
 ## Write and read Vault AWS Secret Engine policy
-echo 'path "aws/creds/my-role" {
-  capabilities = ["read"]
+echo 'path "echo 'path "aws/*" {
+  capabilities = ["read","list"]
 }
 path "sys/leases/renew" {
   capabilities = ["create"]
