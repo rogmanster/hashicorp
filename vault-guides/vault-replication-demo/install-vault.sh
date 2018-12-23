@@ -27,10 +27,12 @@ echo "Configuring Vault ${VAULT_VERSION}"
 sudo mkdir -pm 0755 ${VAULT_CONFIG_DIR} ${VAULT_DATA_DIR} ${VAULT_TLS_DIR}
 
 # rogmanster | customized block for listen-address
-LOCAL_IPV4=$(curl -s ${local_ip_url}) # added
+# added LOCAL_IPV4
+LOCAL_IPV4=$(curl -s ${local_ip_url}) 
 echo "Start Vault in -dev mode"
 sudo tee ${VAULT_ENV_VARS} > /dev/null <<ENVVARS
-FLAGS=-dev -dev-ha -dev-transactional -dev-root-token-id=root -dev-listen-address=$LOCAL_IPV4:8200 # changed 
+# changed -dev-listen-address from 0.0.0.0 to $LOCAL_IPV4
+FLAGS=-dev -dev-ha -dev-transactional -dev-root-token-id=root -dev-listen-address=$LOCAL_IPV4:8200 
 ENVVARS
 
 echo "Update directory permissions"
