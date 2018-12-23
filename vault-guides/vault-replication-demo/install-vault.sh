@@ -13,6 +13,8 @@ VAULT_DATA_DIR=/opt/vault/data
 VAULT_TLS_DIR=/opt/vault/tls
 VAULT_ENV_VARS=${VAULT_CONFIG_DIR}/vault.conf
 VAULT_PROFILE_SCRIPT=/etc/profile.d/vault.sh
+# rogmanster | add variable
+VAULT_LOCAL_IPV4=${LOCAL_IPV4}
 
 echo "Downloading Vault ${VAULT_VERSION}"
 [ 200 -ne $(curl --write-out %{http_code} --silent --output /tmp/${VAULT_ZIP} ${VAULT_URL}) ] && exit 1
@@ -30,7 +32,7 @@ sudo mkdir -pm 0755 ${VAULT_CONFIG_DIR} ${VAULT_DATA_DIR} ${VAULT_TLS_DIR}
 # changed -dev-listen-address from 0.0.0.0 to $LOCAL_IPV4
 echo "Start Vault in -dev mode"
 sudo tee ${VAULT_ENV_VARS} > /dev/null <<ENVVARS
-FLAGS=-dev -dev-ha -dev-transactional -dev-root-token-id=root -dev-listen-address=$LOCAL_IPV4:8200 
+FLAGS=-dev -dev-ha -dev-transactional -dev-root-token-id=root -dev-listen-address=${VAULT_LOCAL_IPV4}:8200 
 ENVVARS
 
 echo "Update directory permissions"
