@@ -46,7 +46,7 @@ variable "consul_config_override" { default = "" }
 variable "vault_servers"  { default = 1 }
 variable "vault_instance" { default = "t2.micro" }
 variable "vault_version"  { default = "0.10.3" }
-variable "vault_url"      { default = "https://s3-us-west-2.amazonaws.com/hc-enterprise-binaries/vault/ent/0.11.3/vault-enterprise_0.11.3%2Bent_linux_amd64.zip" } # Vault Enterprise download URL for runtime install, defaults to Vault OSS
+variable "vault_url"      { default = "" } # Vault Enterprise download URL for runtime install, defaults to Vault OSS
 variable "vault_image_id" { default = "" }
 
 variable "vault_public" {
