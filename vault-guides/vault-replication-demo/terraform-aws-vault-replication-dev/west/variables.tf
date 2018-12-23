@@ -58,7 +58,7 @@ variable "vault_config_override" { default = "" }
 
 variable "vault_tags" {
   type    = "map"
-  default = {"owner" = "rchaop", "TTL" = "-1"}
+  default = {"owner" = "rchao", "TTL" = "-1"}
 }
 
 variable "vault_tags_list" {
