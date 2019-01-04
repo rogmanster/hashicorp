@@ -71,7 +71,8 @@ vault write pacman/config \
 
 # Configure role configuration for Windows AD
 vault write pacman/roles/pacman.admin \
-  service_account_name=pacman.admin@roger.local
+  service_account_name=pacman.admin@roger.local \
+  ttl=60s
 
 
 echo
