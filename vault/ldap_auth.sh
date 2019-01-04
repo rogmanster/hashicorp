@@ -113,5 +113,6 @@ curl \
 
 # vault login -method=ldap username=ssp.admin
 # vault read pacman/creds/pacman.admin
+# vault read pacman/roles/pacman.admin
 # vault read secret/data/mycred
 # ldapsearch -x -D "CN=pacman.admin,CN=Users,DC=roger,DC=local" -W -H ldap://10.0.0.251 -b "CN=Users,DC=roger,DC=local" \ -s sub ‘galaga.admin’
