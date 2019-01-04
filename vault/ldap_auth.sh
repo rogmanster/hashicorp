@@ -28,17 +28,8 @@ vault write auth/ldap/config \
     groupattr=CN \
     insecure_tls=true
 
-# Create policies LDAP auth users
-# Read KV static secret
-echo ' path "secret/metadata/" {
-    capabilities = ["list"]
-}
 
-path "secret/data/mycred" {
-    capabilities = ["read"]
-}' | vault policy write kv-policy -
-
-# Read AD dynamic secret for pacman
+# Vault Policy read AD dynamic secret for pacman
 echo 'path "pacman/*" {
   capabilities = ["read","list"]
 }
@@ -106,14 +97,8 @@ curl \
     --header "X-Vault-Token: $TOKEN" \
     $VAULT_ADDR/v1/pacman/creds/pacman.admin | jq
 
-# Fetch KV Static SECRET
-curl \
-    --header "X-Vault-Token: $TOKEN" \
-    $VAULT_ADDR/v1/secret/data/mycred | jq
-
 # CLI commands
 vault login -method=ldap username=ssp.admin
 vault read pacman/creds/pacman.admin
 vault read pacman/roles/pacman.admin
-vault read secret/data/mycred
 ldapsearch -x -D "CN=pacman.admin,CN=Users,DC=roger,DC=local" -W -H ldap://10.0.0.251 -b "CN=Users,DC=roger,DC=local" \ -s sub ‘galaga.admin’
