@@ -19,7 +19,7 @@ vault write sys/license text=$VAULT_PREMIUM_LICENSE
 vault auth enable ldap
 
 vault write auth/ldap/config \
-    url=ldap://10.0.0.251 \
+    url=ldap://10.0.0.251:389 \
     binddn=ssp.admin \
     bindpass=hashi123! \
     userdn=CN=Users,DC=roger,DC=local \
@@ -63,7 +63,7 @@ clear
 # Configure AD Secret Engine using pacman path
 vault secrets enable -path=pacman ad
 vault write pacman/config \
-  binddn=pacman.admin  \
+  binddn=ssp.admin  \
   bindpass=hashi123! \
   url=ldaps://10.0.0.251:636 \
   userdn=dc=roger,dc=local  \
@@ -71,8 +71,8 @@ vault write pacman/config \
 
 # Configure role configuration for Windows AD
 vault write pacman/roles/pacman.admin \
-  service_account_name=pacman.admin@roger.local \
-  ttl=60s
+  service_account_name=pacman.admin@roger.local
+
 
 echo
 read -p "press enter to continue..."
@@ -113,4 +113,4 @@ curl \
 # vault login -method=ldap username=ssp.admin
 # vault read pacman/creds/pacman.admin
 # vault read secret/data/mycred
-#ldapsearch -x -D "CN=pacman.admin,CN=Users,DC=roger,DC=local" -W -H ldap://10.0.0.251 -b "CN=Users,DC=roger,DC=local" \ -s sub ‘galaga.admin’
+# ldapsearch -x -D "CN=pacman.admin,CN=Users,DC=roger,DC=local" -W -H ldap://10.0.0.251 -b "CN=Users,DC=roger,DC=local" \ -s sub ‘galaga.admin’
