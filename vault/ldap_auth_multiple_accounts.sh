@@ -2,8 +2,7 @@
 
 ##Prerequisites
 #Deploy Vault Instance and export VAULT_ADDR
-#Configure Windows AD Configuration
-#Set AD Accounts - ssp.admin, pacman.admin
+#Set AD Accounts - ssp.admin, pacman.admin, galaga.admin
 
 ##VAULT LDAP AUTH CONFIGURATIONS
 #Set Vault Premium License
