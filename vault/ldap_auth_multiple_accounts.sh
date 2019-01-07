@@ -1,4 +1,4 @@
- ## LDAP Auth + Dynamic AD Secret Generation
+## LDAP Auth + Dynamic AD Secret Generation
 
 ## Prerequisites
 # Deploy Vault Instance and export VAULT_ADDR
