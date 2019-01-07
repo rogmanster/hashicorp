@@ -42,8 +42,8 @@ echo
 read -p "press enter to continue..."
 clear
 
-## VAULT SECRET ENGINE CONFIGURATIONS
-# Configure AD Secret Engine using pacman path
+##VAULT SECRET ENGINE CONFIGURATIONS
+#Configure AD Secret Engine using pacman path
 vault secrets enable -path=domain1 ad
 vault write domain1/config \
   binddn=ssp.admin  \
@@ -97,4 +97,3 @@ curl \
 # vault read pacman/roles/pacman.admin
 # vault read secret/data/mycred
 # ldapsearch -x -D "CN=pacman.admin,CN=Users,DC=roger,DC=local" -W -H ldap://10.0.0.251 -b "CN=Users,DC=roger,DC=local" \ -s sub ‘galaga.admin’
-
