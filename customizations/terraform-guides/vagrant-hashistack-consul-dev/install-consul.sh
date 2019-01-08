@@ -26,9 +26,23 @@ echo "$(${CONSUL_PATH} --version)"
 echo "Configuring Consul ${CONSUL_VERSION}"
 sudo mkdir -pm 0755 ${CONSUL_CONFIG_DIR} ${CONSUL_DATA_DIR} ${CONSUL_TLS_DIR}
 
+#rogmanster - configure Consul ACL
+sudo tee acl.json > /dev/null  <<ACL
+{
+  "primary_datacenter": "dc1",
+  "acl" : {
+    "enabled": true,
+    "default_policy": "deny",
+    "down_policy": "extend-cache"
+  }
+}
+ACL
+
 echo "Start Consul in -dev mode"
 sudo tee ${CONSUL_ENV_VARS} > /dev/null <<ENVVARS
-FLAGS=-dev -ui -client 0.0.0.0
+# rogmanster - load acl.json for -dev mode
+# FLAGS=-dev -ui -client 0.0.0.0 
+FLAGS=-dev -ui -client 0.0.0.0 -config-file=acl.json
 CONSUL_HTTP_ADDR=http://127.0.0.1:8500
 ENVVARS
 
