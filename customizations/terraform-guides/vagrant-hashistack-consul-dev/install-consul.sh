@@ -35,7 +35,7 @@ sudo tee /etc/consul.d/acl.json > /dev/null  <<ACL
     "default_policy": "deny",
     "down_policy": "extend-cache",
     "tokens" : {
-      "master" : "root"
+      "master" : "b1gs33cr3t"
     }
   }
 }
