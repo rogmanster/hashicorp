@@ -80,6 +80,10 @@ vault {
 }
 CONFIG
 
+echo
+read -p "press enter to continue..."
+clear
+
 # Create Consul-Template template
 tee > in.tpl <<KV
 {{ key "myserver" }}
