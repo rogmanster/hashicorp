@@ -24,6 +24,7 @@ curl \
 echo
 read -p "press enter to continue..."
 
+## VAULT CONSUL SECRET ENGINE
 # Configure Vault
 vault secrets enable consul
 vault write consul/config/access \
