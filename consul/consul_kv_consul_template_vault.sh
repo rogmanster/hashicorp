@@ -24,14 +24,6 @@ curl \
 echo
 read -p "press enter to continue..."
 
-## VAULT CONSUL SECRET ENGINE
-# Create management token for Vault use
-#TOKEN=$(curl \
-#    --header "X-Consul-Token: root" \
-#    --request PUT \
-#    --data '{"Name": "vault-token", "Type": "management"}' \
-#    http://127.0.0.1:8200/v1/acl/create | jq '.ID')
-
 # Configure Vault
 vault secrets enable consul
 vault write consul/config/access \
