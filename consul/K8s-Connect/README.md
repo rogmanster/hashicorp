@@ -34,7 +34,6 @@ minikube service consul-minikube-ui
 ```
 kubectl exec consul-minikube-server-0 -- consul intention create -deny static-client static-server
 kubectl exec consul-minikube-server-0 -- consul intention delete static-client static-server
-kubectl exec consul-minikube-server-0 -- consul intention create -allow static-client static-server
 ```
 
 5. Test our service again
