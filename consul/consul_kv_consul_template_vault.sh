@@ -23,6 +23,7 @@ curl \
 
 echo
 read -p "press enter to continue..."
+clear
 
 ## VAULT CONSUL SECRET ENGINE
 # Configure Vault
