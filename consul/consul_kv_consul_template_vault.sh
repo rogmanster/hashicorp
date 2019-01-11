@@ -51,6 +51,10 @@ echo 'path "/consul/creds/my-role" {
 vault auth enable userpass
 vault write auth/userpass/users/roger password=password123 policies=my-policy
 
+echo
+read -p "press enter to continue..."
+clear
+
 ## CONSUL-TEMPLATE CONFIGURATION
 # Authenticate with Vault
 VAULT_MGMT_TOKEN=$(curl \
