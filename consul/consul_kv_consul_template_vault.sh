@@ -36,10 +36,6 @@ vault write consul/config/access \
 vault write consul/roles/my-role \
     policy=$(base64 <<< 'key "" { policy = "read" }')
 
-echo
-read -p "press enter to continue..."
-clear
-
 ## VAULT USERPASS AUTH
 # Create policy to read credentials
 # capabilities = ["create", "read", "update", "delete", "list"]
