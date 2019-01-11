@@ -26,9 +26,12 @@ kubectl exec static-client -c static-client -- curl -s http://127.0.0.1:1234/
 
 4. Add a Consul intention to deny the service. 
 
+From UI:
 ```
-kubectl get service # Look for the `consul-ui` external IP.
-export CONSUL_HTTP_ADDR=<http://<external_ip>:80
+minikube service consul-minikube-ui
+```
+From CLI:
+```
 consul intention create -deny static-client static-server
 ```
 
