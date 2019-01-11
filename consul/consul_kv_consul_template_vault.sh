@@ -78,6 +78,7 @@ CONFIG
 tee > in.tpl <<KV
 {{ key "myserver" }}
 KV
+
 echo
 read -p "press enter to continue..."
 clear
