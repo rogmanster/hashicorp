@@ -74,14 +74,13 @@ vault {
 }
 CONFIG
 
-echo
-read -p "press enter to continue..."
-clear
-
 # Create Consul-Template template
 tee > in.tpl <<KV
 {{ key "myserver" }}
 KV
+echo
+read -p "press enter to continue..."
+clear
 
 ## CONSUL-TEMPLATE OUTPUT
 # Run Consul-Template (note: will run as daemon unless '-once' is used)
