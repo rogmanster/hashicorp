@@ -1,7 +1,7 @@
 # K8s Consul Helm Chart - Consul Connect Demo
 
 ## Introduction
-This lab is based on the [Connect K8s sidecar](https://www.consul.io/docs/platform/k8s/connect.html) content available from HashiCorp. In this example we will configure a basic server and client, and show mutual authentication between services. This lab is run using Minikube with [Consul Helm](https://gist.github.com/anubhavmishra/0877081b43ca9d0353e547da05ec2e3f) chart.
+This lab is based on the [Connect K8s sidecar](https://www.consul.io/docs/platform/k8s/connect.html) content available from HashiCorp. In this example we will configure a basic server and client, and show mutual authentication between services. This lab is run using Minikube with [Consul Helm](https://gist.github.com/anubhavmishra/0877081b43ca9d0353e547da05ec2e3f) chart instructions.
 
 ## Steps
 1. ./minikube-consul-helm.sh
