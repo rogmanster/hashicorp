@@ -92,8 +92,8 @@ sleep 1
 echo
 ls -l
 echo
-echo "tail 'out.txt. for 30 seconds...'"
-gtimeout 30s tail -F out.txt
+echo "tail 'out.txt. for 60 seconds...'"
+gtimeout 60s tail -F out.txt
 
 echo
 read -p "press enter to clean up..."
