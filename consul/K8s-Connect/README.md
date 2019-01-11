@@ -32,7 +32,7 @@ minikube service consul-minikube-ui
 ```
   From CLI:
 ```
-consul intention create -deny static-client static-server
+kubectl exec consul-minikube-server-0 consul intention create -deny static-client static-server
 ```
 
 5. Test our service again
