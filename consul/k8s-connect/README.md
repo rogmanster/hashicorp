@@ -45,7 +45,18 @@ kubectl exec static-client -- curl -s http://127.0.0.1:1234/
 command terminated with exit code 52
 ```
 
-6. Clean-up
+6. Optional - check the container environment variables set by injector
+
+```
+kubectl exec -it static-client -- bin/sh
+```
+```
+# printenv | grep STATIC_SERVER
+STATIC_SERVER_CONNECT_SERVICE_HOST=127.0.0.1
+STATIC_SERVER_CONNECT_SERVICE_PORT=1234
+```
+
+7. Clean-up
 
 ```
 minikube delete
