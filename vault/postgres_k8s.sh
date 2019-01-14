@@ -40,7 +40,7 @@ vault write sys/license text=$VAULT_PREMIUM_LICENSE
 export VAULT_SA_NAME=$(kubectl get sa postgres-vault -o jsonpath="{.secrets[*]['name']}")
 export SA_JWT_TOKEN=$(kubectl get secret $VAULT_SA_NAME -o jsonpath="{.data.token}" | base64 --decode; echo)
 export SA_CA_CRT=$(kubectl get secret $VAULT_SA_NAME -o jsonpath="{.data['ca\.crt']}" | base64 --decode; echo)
-export K8s_HOST=$(kubectl config view | grep -A1 'certificate-authority-data: DATA+OMITTED' | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' # multiple greps to grabs GKE view instead of minikube
+export K8s_HOST=$(kubectl config view | grep -A1 'certificate-authority-data: DATA+OMITTED' | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}') # multiple greps to grabs GKE view instead of minikube
 
 ## Write and read Vault Kubernetes AUTH config
 vault auth enable kubernetes
