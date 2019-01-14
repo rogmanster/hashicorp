@@ -32,7 +32,7 @@ spec:
     # Your other containers would read from /home/vault/.vault-token, or set
     # HOME to /home/vault
   - name: consul-template
-    image: hashicorp/consul-template:alpine
+    image: hashicorp/consul-template:0.19.5.alpine
       # VAULT_TOKEN=${cat /home/vault/.vault-token}
     volumeMounts:
     - name: vault-token
