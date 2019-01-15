@@ -69,7 +69,7 @@ variable "lb_bucket_prefix" {
 
 variable "lb_logs_enabled" {
   description = "S3 bucket LB access logs enabled, defaults to true."
-  default     = true
+  default     = false
 }
 
 variable "tags" {
