@@ -112,7 +112,7 @@ variable "lb_ssl_policy" {
 
 variable "lb_bucket" {
   description = "S3 bucket override for LB access logs, `lb_bucket_override` be set to true if overriding"
-  default     = true # rogmanster changed from ""
+  default     = ""
 }
 
 variable "lb_bucket_override" {
