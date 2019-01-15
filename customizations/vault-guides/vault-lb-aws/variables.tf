@@ -54,12 +54,12 @@ variable "lb_ssl_policy" {
 
 variable "lb_bucket" {
   description = "S3 bucket override for LB access logs, `lb_bucket_override` be set to true if overriding"
-  default     = ""
+  default     = true  # rogmanster changed from false
 }
 
 variable "lb_bucket_override" {
   description = "Override the default S3 bucket created for access logs with `lb_bucket`, defaults to false."
-  default     = false
+  default     = true # rogmanster changed from false
 }
 
 variable "lb_bucket_prefix" {
