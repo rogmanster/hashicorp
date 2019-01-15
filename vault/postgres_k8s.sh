@@ -93,7 +93,7 @@ allowed_roles=readonly \
 ## Configure role configuration for postgres
 vault write database/roles/readonly db_name=demo \
 creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
-default_ttl=60 max_ttl=1h
+default_ttl=30 max_ttl=1h
 
 echo "Postgres LoadBalancer IP: " $POSTGRES_IP
 echo
