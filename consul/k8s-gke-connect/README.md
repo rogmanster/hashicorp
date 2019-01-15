@@ -47,4 +47,8 @@ command terminated with exit code 52
 kubectl exec -it static-client -- printenv | grep STATIC_SERVER
 ```
 
+7. Clean-up Helm Chart
 
+```
+helm delete --purge consul-helm
+``
