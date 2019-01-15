@@ -1,5 +1,5 @@
 ## Customizations for Vault-Guide Deployments
-# workspace/terraform-aws-vault-replication-dev
+## workspace/terraform-aws-vault-replication-dev
 
 Update vault.conf to change listen-address 
 ```
