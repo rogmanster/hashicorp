@@ -90,7 +90,7 @@ resource "aws_launch_configuration" "vault" {
 module "vault_lb_aws" {
   # source = "github.com/hashicorp-modules/vault-lb-aws"
   # rogmanster - customized to disble aws lb s3 bucket
-  source = "github.com/rogmanster/hashicorp/customizations/vault-guides/vault-lb-aws/"
+  source = "https://github.com/rogmanster/hashicorp/tree/master/customizations/vault-guides/vault-lb-aws"
 
   create             = "${var.create}"
   name               = "${var.name}"
