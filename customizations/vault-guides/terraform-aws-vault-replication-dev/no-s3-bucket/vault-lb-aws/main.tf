@@ -114,13 +114,7 @@ resource "aws_lb" "vault" {
   subnets         = ["${var.subnet_ids}"]
   security_groups = ["${aws_security_group.vault_lb.id}"]
   tags            = "${merge(var.tags, map("Name", format("%s-vault-lb", var.name)))}"
-
-  # rogmanster - override no access logs
-  #access_logs {
-    #bucket  = "${var.lb_bucket_override ? var.lb_bucket : element(concat(aws_s3_bucket.vault_lb_access_logs.*.id, list("")), 0)}"
-    #prefix  = "${var.lb_bucket_prefix}"
-    #enabled = "${var.lb_logs_enabled}"
-  #}
+  # rogmanster - disable access logs - removed
 }
 
 resource "random_id" "vault_http_8200" {
