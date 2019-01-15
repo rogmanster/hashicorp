@@ -67,7 +67,9 @@ data "aws_elb_service_account" "vault_lb_access_logs" {
 }
 
 resource "aws_s3_bucket" "vault_lb_access_logs" {
-  count = "${var.create && !var.lb_bucket_override ? 1 : 0}"
+  #count = "${var.create && !var.lb_bucket_override ? 1 : 0}"
+  #rogmanster - no s3 bucket creation - couldn't figure out variable override.
+  count = 0
 
   bucket = "${random_id.vault_lb_access_logs.hex}"
   acl    = "private"
