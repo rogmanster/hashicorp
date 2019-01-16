@@ -45,7 +45,7 @@ echo "Start Consul in -dev mode"
 sudo tee ${CONSUL_ENV_VARS} > /dev/null <<ENVVARS
 # rogmanster - load acl.json for -dev mode
 # FLAGS=-dev -ui -client 0.0.0.0 
-FLAGS=-dev -ui -client 0.0.0.0 -config-file=/etc/consul.d/acl.json -log-file=/var/log/consul.log 
+FLAGS=-dev -ui -client 0.0.0.0 -config-file=/etc/consul.d/acl.json -log-file=/etc/consul.d/consul.log 
 CONSUL_HTTP_ADDR=http://127.0.0.1:8500
 ENVVARS
 
