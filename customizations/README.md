@@ -1,8 +1,8 @@
 ## Customizations for the Hashistack Deployments
 
 ```
-Consul Bootstrap ACL System
+Vagrant Hashistack Dev - Consul Bootstrap ACL System
 ```
 ```
-Vault DR/Performance Replication Deployment 
+Vault Dev AWS - Vault DR/Performance Replication Deployment 
 ```
