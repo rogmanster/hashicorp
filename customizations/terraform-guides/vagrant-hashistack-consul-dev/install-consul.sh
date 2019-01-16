@@ -11,6 +11,7 @@ CONSUL_PATH=${CONSUL_DIR}/consul
 CONSUL_CONFIG_DIR=/etc/consul.d
 CONSUL_DATA_DIR=/opt/consul/data
 CONSUL_TLS_DIR=/opt/consul/tls
+CONSUL_LOG_DIR=/var/log/consul #rogmanster added
 CONSUL_ENV_VARS=${CONSUL_CONFIG_DIR}/consul.conf
 CONSUL_PROFILE_SCRIPT=/etc/profile.d/consul.sh
 
@@ -24,7 +25,7 @@ sudo chown ${USER}:${GROUP} ${CONSUL_PATH}
 echo "$(${CONSUL_PATH} --version)"
 
 echo "Configuring Consul ${CONSUL_VERSION}"
-sudo mkdir -pm 0755 ${CONSUL_CONFIG_DIR} ${CONSUL_DATA_DIR} ${CONSUL_TLS_DIR}
+sudo mkdir -pm 0755 ${CONSUL_CONFIG_DIR} ${CONSUL_DATA_DIR} ${CONSUL_TLS_DIR} ${CONSUL_LOG_DIR} #rogmanster appended
 
 #rogmanster - configure Consul ACL
 sudo tee /etc/consul.d/acl.json > /dev/null  <<ACL
@@ -45,7 +46,7 @@ echo "Start Consul in -dev mode"
 sudo tee ${CONSUL_ENV_VARS} > /dev/null <<ENVVARS
 # rogmanster - load acl.json for -dev mode
 # FLAGS=-dev -ui -client 0.0.0.0 
-FLAGS=-dev -ui -client 0.0.0.0 -config-file=/etc/consul.d/acl.json -log-file=/etc/consul.d/myconsul.log 
+FLAGS=-dev -ui -client 0.0.0.0 -config-file=/etc/consul.d/acl.json -log-file=/var/log/consul/consul.log
 CONSUL_HTTP_ADDR=http://127.0.0.1:8500
 ENVVARS
 
