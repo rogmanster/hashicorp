@@ -1,5 +1,5 @@
-##Customizations for Vault-Guide Deployments
-##workspace/terraform-aws-consul-quick-start
+## Customizations for Vault-Guide Deployments
+## workspace/terraform-aws-consul-quick-start
 
 
 Update modules due to AWS deployment errors "to many S3 buckets..."
