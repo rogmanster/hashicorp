@@ -17,7 +17,7 @@ apt-get install -y \
 
 echo "-> Downloading Vault....."
 cd /tmp && {
-  curl -sfL -o vault.zip "https://releases.hashicorp.com/vault/0.10.1/vault_0.10.1_linux_amd64.zip"
+  curl -sfL -o vault.zip "https://releases.hashicorp.com/vault/1.1.0/vault_1.1.0_linux_amd64.zip"
   unzip -qq vault.zip
   sudo mv vault /usr/local/bin/vault
   sudo chmod +x /usr/local/bin/vault
@@ -26,7 +26,7 @@ cd /tmp && {
 
 echo "-> Writing profile....."
 tee "/etc/profile.d/vault.sh" > /dev/null <<"EOF"
-alias vualt="vault"
+alias vault="vault"
 export VAULT_ADDR="http://127.0.0.1:8200"
 EOF
 . "/etc/profile.d/vault.sh"
