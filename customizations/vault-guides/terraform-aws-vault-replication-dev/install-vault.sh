@@ -20,7 +20,7 @@ echo "Downloading Vault ${VAULT_VERSION}"
 [ 200 -ne $(curl --write-out %{http_code} --silent --output /tmp/${VAULT_ZIP} ${VAULT_URL}) ] && exit 1
 
 echo "Installing Vault"
-sudo unzip -o /tmp/${VAULT_ZIP} -d ${VAULT_DIR}
+sudo unzip -o /tmp/vault* -d ${VAULT_DIR}
 sudo chmod 0755 ${VAULT_PATH}
 sudo chown ${USER}:${GROUP} ${VAULT_PATH}
 echo "$(${VAULT_PATH} --version)"
